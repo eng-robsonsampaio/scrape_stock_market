@@ -21,3 +21,4 @@ Este projeto consiste em uma solução de web scraping para coletar informaçõe
    ```bash
    git clone https://github.com/seu-usuario/seu-repositorio.git
    cd seu-repositorio
+   ```
