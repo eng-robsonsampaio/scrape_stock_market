@@ -6,3 +6,6 @@ venv/
 
 # Ignore log files
 *.log
+
+# Ignore output data
+output/
