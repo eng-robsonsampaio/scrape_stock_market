@@ -5,15 +5,17 @@
   <title>Visualização do DataFrame</title>
   <!-- Adicione estilos de tabela do Bootstrap para melhor aparência -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Vincule o arquivo de estilo CSS personalizado -->
+  <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
   <div class="container mt-4">
-    <h2>Visualização das 10 primeiras linhas do DataFrame</h2>
+    <h2 class="table-title">Web Scraping e Classificação de Ativos - Solução em Python</h2>
     <div>
-    <a href="{{ url_for('display_stock_list') }}" class="btn btn-primary mt-2">Stock List</a>
-    <a href="{{ url_for('display_historical_data') }}" class="btn btn-primary mt-2">Historical Data</a>
-    <a href="{{ url_for('display_average_by_type') }}" class="btn btn-primary mt-2">Mean by each type of Stock</a>
-    <a href="{{ url_for('display_average_by_stock') }}" class="btn btn-primary mt-2">Mean by each stock</a>
+    <a href="{{ url_for('display_stock_list') }}" class="btn btn-primary mt-2">Lista de ações</a>
+    <a href="{{ url_for('display_historical_data') }}" class="btn btn-primary mt-2">Dados Históricos</a>
+    <a href="{{ url_for('display_average_by_type') }}" class="btn btn-primary mt-2">Médias Históricas por tipo de ativo</a>
+    <a href="{{ url_for('display_average_by_stock') }}" class="btn btn-primary mt-2">Médias Históricas por Ação</a>
     </div>
 
     <form method="get" action="{{ url_for(current_route) }}">
@@ -23,12 +25,14 @@
           <option value="25" {% if rows == '25' %}selected{% endif %}>25</option>
           <option value="50" {% if rows == '50' %}selected{% endif %}>50</option>
           <option value="100" {% if rows == '100' %}selected{% endif %}>100</option>
-          <option value="All" {% if rows == 'All' %}selected{% endif %}>All</option>
+          <option value="All" {% if rows == 'All' %}selected{% endif %}>Todos</option>
         </select>
-        <input type="text" name="ativo" placeholder="Pesquisar por ativo" value="{{ request.args.get('ativo', '') }}">
-        <button type="submit">Pesquisar</button>
+        <div class="search-container">
+            <input class="search-input" type="text" name="ativo" placeholder="Pesquisar por ativo" value="{{ request.args.get('ativo', '') }}">
+            <button class="search-button" type="submit">Pesquisar</button>
+        </div>
       </form>
-
+ 
     {{ table|safe }}
 
   </div>

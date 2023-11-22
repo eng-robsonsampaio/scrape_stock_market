@@ -1,7 +1,7 @@
 import pandas as pd
 from flask import Flask, render_template, request
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 df_result = pd.read_csv('output/stoks.csv', sep=';')
 df_list_of_stoks = pd.read_csv('output/stock_list.csv', sep=';')
 
@@ -13,16 +13,16 @@ def display_stock_list():
     rows = request.args.get('rows', 5)
     ativo = request.args.get('ativo', '')
     # Filtrar o DataFrame pelo ativo, se fornecido
-    df_filtered = df_list_of_stoks[df_list_of_stoks['value'].str.contains(ativo, case=False, na=False)]
+    df_filtered = df_list_of_stoks[df_list_of_stoks['ATIVO'].str.contains(ativo, case=False, na=False)]
 
 
     # Obter as linhas do DataFrame conforme a seleção do usuário
     if rows == 'All':
         # Criar uma tabela HTML usando o método to_html() do DataFrame
-        table_html = df_filtered.to_html(classes='table table-striped')
+        table_html = df_filtered.to_html(classes='table table-striped table-bordered table-hover')
     else:
         # Criar uma tabela HTML usando o método to_html() do DataFrame
-        table_html = df_filtered.head(int(rows)).to_html(classes='table table-striped')
+        table_html = df_filtered.head(int(rows)).to_html(classes='table table-striped table-bordered table-hover', index=False)
 
     # Renderizar a página HTML com a tabela e o dropdown
     return render_template('index.html', table=table_html, rows=rows, current_route='display_stock_list')
@@ -43,7 +43,7 @@ def display_historical_data():
         table_html = df_filtered.to_html(classes='table table-striped')
     else:
         # Criar uma tabela HTML usando o método to_html() do DataFrame
-        table_html = df_filtered.head(int(rows)).to_html(classes='table table-striped')
+        table_html = df_filtered.head(int(rows)).to_html(classes='table table-striped', index=False)
 
     # Renderizar a página HTML com a tabela e o dropdown
     return render_template('index.html', table=table_html, rows=rows, current_route='display_historical_data')
@@ -63,7 +63,7 @@ def display_average_by_type():
     media_por_tipo.reset_index(inplace=True)
 
     # Criar uma tabela HTML usando o método to_html() do DataFrame
-    table_html = media_por_tipo.to_html(classes='table table-striped')
+    table_html = media_por_tipo.to_html(classes='table table-striped', index=False)
 
     # Renderizar a página HTML com a tabela de médias
     return render_template('index.html', table=table_html, current_route='display_average_by_type')
@@ -84,7 +84,7 @@ def display_average_by_stock():
         table_html = media_por_tipo.to_html(classes='table table-striped')
     else:
         # Criar uma tabela HTML usando o método to_html() do DataFrame
-        table_html = media_por_tipo.head(int(rows)).to_html(classes='table table-striped')
+        table_html = media_por_tipo.head(int(rows)).to_html(classes='table table-striped', index=False)
     # table_html = media_por_tipo.to_html(classes='table table-striped')
 
     # Renderizar a página HTML com a tabela de médias

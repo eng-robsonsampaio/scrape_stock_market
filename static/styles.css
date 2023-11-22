@@ -1,0 +1,66 @@
+/* styles.css */
+
+/* Cor de fundo principal do corpo do site */
+body {
+    background-color: #d3d3d3; /* Cor mais escura de fundo */
+ }
+
+/* Cor de fundo do título */
+.table-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right, #45C7FB, #3148A6);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+ }
+ 
+ /* Cores da tabela */
+ table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa; /* Cor de fundo principal da tabela */
+ }
+ 
+ th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Cor da linha separadora entre as células */
+ }
+ 
+ th {
+    background-color: #45C7FB; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+ }
+ 
+ tr:nth-child(even) {
+    background-color: #f2f2f2; /* Cor de fundo para linhas pares */
+ }
+ 
+ tr:hover {
+    background-color: #d4ebf2; /* Cor de fundo ao passar o mouse sobre a linha */
+ }
+ 
+ /* Estilo do componente de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Ajuste o espaçamento inferior conforme necessário */
+ }
+ 
+ .search-input {
+    padding: 8px;
+    border: 1px solid #ced4da; /* Cor da borda do input */
+    border-radius: 5px;
+    margin-right: 10px; /* Ajuste o espaçamento à direita conforme necessário */
+ }
+ 
+ .search-button {
+    padding: 8px 15px;
+    border: 1px solid #007bff; /* Cor da borda do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border-radius: 5px;
+ }
